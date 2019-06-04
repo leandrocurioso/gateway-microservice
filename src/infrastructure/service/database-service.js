@@ -11,7 +11,7 @@ class DatabaseService {
         const sql = `SELECT id AS iss, 
                             api_profile_id AS role,
                             email
-                     FROM user 
+                     FROM user0
                      WHERE email = :email
                      AND password = :password
                      AND active = 1 

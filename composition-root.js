@@ -18,6 +18,8 @@ const ExpressBasicAuth = require("express-basic-auth");
 const JsonWebToken = require("jsonwebtoken");
 const RequestPromise = require("request-promise");
 const Crypto = require('crypto');
+const { Timber } = require('@timberio/node');
+const { TimberTransport } = require('@timberio/winston');
 
 const App = require('./app');
 
@@ -84,7 +86,9 @@ class CompositionRoot {
             uuid: Awilix.asValue(UUID),
             jsonWebToken: Awilix.asValue(JsonWebToken),
             requestPromise: Awilix.asValue(RequestPromise),
-            crypto: Awilix.asValue(Crypto)
+            crypto: Awilix.asValue(Crypto),
+            timber: Awilix.asValue(Timber),
+            timberTransport: Awilix.asValue(TimberTransport)
         });
     }
 
@@ -166,10 +170,11 @@ class CompositionRoot {
                 configuration: this.configuration,
                 path: this.container.resolve('path'),
                 winston: this.container.resolve('winston'),
-                rootDir: this.rootDir
+                rootDir: this.rootDir,
+                timberTransport: this.container.resolve('timberTransport'),
+                timber: this.container.resolve('timber')
             }).getInstance())
         });
-
         this.container.register({
             getFilesRecursively: Awilix.asClass(GetFilesRecursively).singleton(),
             expressBasicAuth: Awilix.asValue(ExpressBasicAuth({

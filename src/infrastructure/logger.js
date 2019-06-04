@@ -1,10 +1,12 @@
 class Logger {
 
-  constructor({ configuration, path, winston, rootDir }) {
+  constructor({ configuration, path, winston, rootDir, timber, timberTransport }) {
     this.configuration = configuration;
     this.path = path;
     this.winston = winston;
     this.rootDir = rootDir;
+    this.timber = timber;
+    this.timberTransport = timberTransport;
   }
 
   getInstance() {
@@ -18,6 +20,12 @@ class Logger {
       ),
       transports: this.configuration.logger.transports.map(transport => {
         switch(transport) {
+          case 'timber':
+            const timber = new this.timber(
+              this.configuration.logger.timberOrganizationKey, 
+              this.configuration.logger.timberSourceId
+            );
+            return new this.timberTransport(timber);
           case 'console':
             return new this.winston.transports.Console();
           case 'file':
