@@ -10,7 +10,7 @@ Follow this steps but first! For each parameter go to **Environment Configuratio
 
 ### Instructions to run the project
 
-In the temrinal browser to the project folder and type:
+In the temrinal browse to the project folder and type:
 
 1 - To install the dependencies
 `````
@@ -54,12 +54,12 @@ The environment execution mode.<br/>
 
 **SERVER_PORT**<br/>
 **Type:** integer<br/>
-**Default:** 3000<br/>
+**Default:** 3001<br/>
 A port number to run the microservice.<br/>
 
 **SERVER_X_API_KEY**<br/>
 **Type:** string<br/>
-**Default:** 47661a53-eadf-458b-b16a-801915412d10<br/>
+**Default:** 8551ded4-83c0-44d2-8fb5-6b3687282e8a<br/>
 A static api key string that must be passed in the HTTP header when calling the API.<br/>
 **Header key:** X-Api-Key<br/>
 
@@ -73,8 +73,8 @@ The application timezone, this is a specific environment variable for process.en
 **LOGGER_TRANSPORTS**<br/>
 **Type:** array<string><br/>
 **Default:** file<br/>
-**Possible values:** console | file<br/>
-The transport layers for [Winston](https://github.com/winstonjs/winston) logger module, basically where the logs will be dispached, it is an array of strings so if you want to log it in console and file together use it with comma separation.<br/>
+**Possible values:** console | file | timber<br/>
+The transport layers for [Winston](https://github.com/winstonjs/winston) logger module, basically where the logs will be dispached, it is an array of strings so if you want to log it in console and file together use it with comma separation. [Timber](https://app.timber.io) is a cloud log provider, you need to create an account to use it and configure the parameters. [ORGANIZATION_KEY, SOURCE_ID] <br/>
 
 **LOGGER_LOG_FILENAME**<br/>
 **Type:** string<br/>
@@ -84,8 +84,16 @@ The filepath location for LOGGER_TRANSPORTS when file transport is active.<br/>
 **LOGGER_LOG_LEVEL**<br/>
 **Type:** string<br/>
 **Default:** info<br/>
-**Possible values:** debug | file | log | info | warn | error<br/>
+**Possible values:** debug | file | silly | info | warn | error<br/>
 The log level.<br/>
+
+**LOGGER_TIMBER_ORGANIZATION_KEY**<br/>
+**Type:** string<br/>
+Api key of you Timber account<br/>
+
+**LOGGER_TIMBER_SOURCE_ID**<br/>
+**Type:** integer<br/>
+Source id of you Timber account<br/>
 
 ### Swagger<br/>
 

@@ -172,7 +172,8 @@ class CompositionRoot {
                 winston: this.container.resolve('winston'),
                 rootDir: this.rootDir,
                 timberTransport: this.container.resolve('timberTransport'),
-                timber: this.container.resolve('timber')
+                timber: this.container.resolve('timber'),
+                appName: this.configuration.packageJson.name
             }).getInstance())
         });
         this.container.register({
